@@ -1,0 +1,60 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800;900&display=swap");
+*
+  padding: 0
+  margin: 0
+  font-family: 'Nunito'
+  box-sizing: border-box
+
+body
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: space-evenly
+  height: 100vh
+
+
+$card_blue   : #4B6587
+$twitter_blue: #1DA1F2
+// Button styles
+.btn
+  padding: 0.2rem
+  display: flex
+  justify-content: space-around
+  align-items: center
+  color: white
+  text-decoration: none
+  transition: 450ms all
+  &:hover
+    transform: scale(1.2)
+  &--blue
+    background-color: $card_blue
+  &--twitter
+    background-color: $twitter_blue
+  &--lg
+    font-size: 2rem
+    border-radius: 20px
+    padding: 1rem
+  &--med
+    font-size: 1.3rem
+    border-radius: 10px
+    padding: 0.5rem
+  & i
+    margin-right: 0.5rem
+
+// Songs page styles
+
+// Tweet container styles
+.tweet__container
+  width: 90%
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: space-evenly
+  padding: 10px
+  & textarea
+    width: 80%
+    border-radius: 20px
+    outline: none
+    padding: 1rem
+    font-size: 1rem
+    margin-top: 10px
