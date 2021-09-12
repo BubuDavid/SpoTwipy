@@ -14,11 +14,5 @@
     <body>
         {% block content %}{% endblock %}
 
-        {% if context.username %}
-            <script type="text/javascript" src="{{ url_for('static', filename='scripts/songs.json') }}"></script>
-
-        {% endif %}
-
-        <script src="{{ url_for('static', filename='scripts/index.js') }}"></script>
     </body>
 </html>

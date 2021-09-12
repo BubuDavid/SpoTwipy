@@ -1,15 +1,39 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <section class="songs__container"></section>
+    <a href="/shuffle-songs" id="shuffle-all">
+        <i class="fas fa-random btn btn--med btn--yellow"></i>
+    </a>
+    <section id="songs__container">
+        {% for song in context.user_info.songs %}
+            <div class="song__card hidden">
+                <img src="{{ song.image }}" alt="Song Image"/>
+                <h1>{{ song.name }}</h1>
+                <p>|
+                    {{ song.artists | join(' | ') }}
+                    |</p>
+                <button class="shuffle__btn">
+                    <i class="fas fa-random btn btn--med btn--green"></i>
+                </button>
+            </div>
+        {% endfor %}
+
+
+    </section>
 
     <section class="tweet__container">
-        <a href="#" class="btn btn--med btn--twitter">
-            <i class="fab fa-twitter"></i>
-            Tweet it!
-        </a>
+        <div class="twitter__wrapper">
+            <p id='character-counter'></p>
+            <a href="#" class="btn btn--med btn--twitter">
+                <i class="fab fa-twitter"></i>
+                Tweet it!
+            </a>
+        </div>
 
-        <textarea name="tweet" id="tweet-area" cols="80" rows="10"></textarea>
+        <textarea id='tweet-body' name="tweet" id="tweet-area" cols="80" rows="8"></textarea>
     </section>
+
+    <script src="{{ url_for('static', filename='scripts/shuffle.js') }}"></script>
+
 
 {% endblock %}

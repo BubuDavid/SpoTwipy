@@ -8,6 +8,7 @@ import json
 
 # Import my spotify module
 from models.spotify_api import Bubufy
+from models.user import User
 
 
 # Get secret keys from a hidden .env file
@@ -22,9 +23,11 @@ bubufy = Bubufy(
     sp_client_secret,
     sp_callback_uri
 )
-
+# Get the authorization data url from spotify
 sp_auth_url = bubufy.get_auth_url(scopes=['playlist-read-private', 'user-top-read'])
 
+# Create the session user (first is empty)
+user = User('')
 
 
 
@@ -36,8 +39,8 @@ app.secret_key = secret_key
 @app.route('/')
 def index_method():
     # Log out the user
-    if 'username' in session:
-        session['username'] = ''
+    if user.username:
+        user.delete_user()
     # Create the context to pass to the page
     context = {
         'page_title': 'Welcome!',
@@ -55,27 +58,28 @@ def spotify_callback_method():
 
     # Get the top songs and create a json
     songs = bubufy.get_top_tracks_or_artists(
-        key_names=['names', 'artists', 'id', 'album', 'uri'],
+        key_names=['name', 'artists', 'id', 'album', 'uri'],
         time_range='short_term'
     )
-    with open('static/scripts/songs.json', 'w') as json_file:
-        json.dump(songs, json_file)
 
-    # Logged in the user
-    session['username'] = 'Bubu'
+    # Generate the user
+    user.create_user('Bubu', songs)
     
     return redirect('/shuffle-songs')
 
 
 @app.route('/shuffle-songs')
 def shuffle_songs_method():
-    if 'username' not in session or not session['username']:
+    if not user.username:
         return redirect('/')
 
     # Create the context to pass to the page
     context = {
         'page_title': 'Shuffle it!',
-        'username'  : session['username']
+        'user_info' : {
+            'username': user.username,
+            'songs'   : user.songs
+        }
     }
     return render_template('shuffle_songs.html', context=context)
 
