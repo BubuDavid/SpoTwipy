@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <a href="{{ context.auth_url }}" class="btn btn--blue btn--lg">
-        <i class="fas fa-random"></i>
-        <p>Shuffle</p>
-    </a>
+    <div class="index__container">
+        <h1>Welcome to Spotwipy - Shuffle</h1>
+        <a href="{{ context.auth_url }}" class="btn btn--lg">
+            <i class="fas fa-random"></i>
+            <p>Shuffle</p>
+        </a>
+        <p>Click the Shuffle button to Shuffle!</p>
+    </div>
 
 
 {% endblock %}

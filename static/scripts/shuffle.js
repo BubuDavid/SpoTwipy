@@ -6,13 +6,15 @@ let randomIndexes = [];
 let randomSongs = [];
 const tweetArea = document.getElementById("tweet-body");
 const characterCounter = document.getElementById("character-counter");
+const twitterBtn = document.getElementById("tweet__btn");
+const shuffleAllBtn = document.getElementById("shuffle-all");
 
 // ######################## Execution zone ########################
 
 // Save the `songCards` in a `song` array
 for (let index = 0; index < songCards.length; index++) {
 	songs.push(songCards[index]);
-	songs[index].parentNode.removeChild(songs[index]);
+	songs[index].remove();
 }
 // Generate 5 random numbers
 for (let i = 0; i < 5; i++) {
@@ -44,6 +46,13 @@ characterCounter.innerText = tweetBody.length + "/280";
 checkTweet();
 tweetArea.addEventListener("input", checkTweet);
 
+// Shuffle all
+shuffleAllBtn.addEventListener("click", () => {
+	for (let i = 0; i < randomSongs.length; i++) {
+		shuffleIt(null, i);
+	}
+});
+
 // ################### Helper functions Zone ######################
 // Function that generate a random number not included in a given array
 function generateRandomNumber(randomArray = []) {
@@ -61,7 +70,7 @@ function generateRandomNumber(randomArray = []) {
 function generateCard(card, index) {
 	songsContainer.appendChild(card);
 	card.classList.remove("hidden");
-	card.id = index + songs.length;
+	card.id = index;
 	card.childNodes[7].addEventListener("click", shuffleIt);
 }
 // Function to hide a card
@@ -77,9 +86,8 @@ function generateCards() {
 	});
 }
 // Shuffle function
-function shuffleIt() {
+function shuffleIt(event, currentIndex = this.parentNode.id) {
 	// Grab the needed indexes
-	let currentIndex = this.parentNode.id - songs.length;
 	let randomIndex = generateRandomNumber();
 	// Destroy this card
 	hideCard(randomSongs[currentIndex]);
@@ -90,6 +98,7 @@ function shuffleIt() {
 	];
 	// Re-generate the cards with the new one.
 	generateCards();
+	// Re-write the tweet body
 	updateTweet();
 }
 

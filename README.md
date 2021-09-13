@@ -200,4 +200,4 @@ Project Link: [SpoTwipy](https://github.com/BubuDavid/SpoTwipy.git)
 [license-url]: https://github.com/BubuDavid/SpoTwipy.git/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/davidpedrozasegoviano/
-[product-screenshot]: static/images/screenshot.png
+[product-screenshot]: static/images/screenshot.gif

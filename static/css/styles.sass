@@ -12,15 +12,33 @@ body
   justify-content: space-evenly
   min-height: 100vh
   overflow: hidden
-  background-color: #EFEFEF
+  background-image: url('https://images.pexels.com/photos/4871011/pexels-photo-4871011.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940')
+  background-attachment: fixed
+  background-size: cover
+  // background: #3F0071
+
+// Mixings
+@mixin glass
+  background-color: rgba(255, 255, 255, .30)
+  backdrop-filter: blur(20px)
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2)
+@mixin glass-green
+  background-color: rgba(30, 215, 96, .4)
+  backdrop-filter: blur(20px)
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2)
+@mixin glass-blue
+  background-color: rgba(29, 161, 242, .4)
+  backdrop-filter: blur(5px);
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2)
+  
 
 
-$card_background   : #CEE6B4
-$btn_background    : #57CC99
-$btn_background2   : #F4D19B
 $twitter_blue      : #1DA1F2
+$redError          : #E05D5D
+$greyTransparent  : rgba(191, 162, 219, 0.5)
 // Button styles
 .btn
+  @include glass-green
   padding: 0.2rem
   display: flex
   justify-content: space-around
@@ -29,16 +47,21 @@ $twitter_blue      : #1DA1F2
   text-decoration: none
   cursor: pointer
   transition: 450ms all
+  border: none
+  & a
+    text-decoration: none
+    display: inherit
+    justify-content: space-around
+    align-items: center
+    color: inherit
   &:hover
     transform: scale(1.2)
-  &--blue
-    background-color: $card_background
-  &--green
-    background-color: $btn_background
   &--yellow
-    background-color: $btn_background2
+    background-color: rgba(224, 93, 93, 0.8)
+    backdrop-filter: blur(20px)
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2)
   &--twitter
-    background-color: $twitter_blue
+    background: $twitter_blue
   &--lg
     font-size: 2rem
     border-radius: 20px
@@ -53,8 +76,8 @@ $twitter_blue      : #1DA1F2
     font-size: 0.8rem
     border-radius: 10px
     padding: 0.5rem
-  & i
-    margin-right: 0.5rem
+  & p
+    margin-left: 0.5rem
 
 // Special button
 #shuffle-all
@@ -62,7 +85,24 @@ $twitter_blue      : #1DA1F2
   bottom: 1rem
   left: 1rem
   text-decoration: none
-
+  z-index: 1
+// Index Styles
+.index__container
+  @include glass
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: space-around
+  width: 70%
+  height: 500px
+  border-radius: 20px
+  color: white
+  &>h1
+    font-size: 2rem
+  &>p
+    color: black
+    font-weight: 500
+    font-size: 1.2rem
 // Songs page styles
 #songs__container
   width: 100%
@@ -71,21 +111,22 @@ $twitter_blue      : #1DA1F2
   display: flex
   align-items: center
   justify-content: space-evenly
-
+// Styles for each card
 .song__card
   display: flex
   flex-direction: column
   justify-content: space-evenly
   align-items: center
-  height: 250px
+  height: 280px
   width: 200px
-  padding: 1rem
-  background-color: $card_background
+  padding: 0.8rem
   border-radius: 10px
   margin: 1rem 1rem 0 0 
   text-align: center
   color: white
   transition: opactity 450ms ease
+  // glass effect
+  @include glass
   & img
     width: 100px
     height: 100px
@@ -96,15 +137,14 @@ $twitter_blue      : #1DA1F2
   & p
     font-size: 0.8rem
     font-weight: 300
-  & .shuffle__btn
-    background: $card_background
-    border: none
   &.hidden
     opacity: 0
     pointer-events: none
     position: absolute
+  
 // Tweet container styles
 .tweet__container
+  position: relative
   width: 90%
   display: flex
   flex-direction: column
@@ -116,21 +156,99 @@ $twitter_blue      : #1DA1F2
     flex-direction: column
     align-items: center
     justify-content: space-between
-  & textarea
+  & #tweet-body
     width: 90%
     border-radius: 20px
     outline: none
     padding: 1rem
-    font-size: 1.2rem
+    font-size: 1rem
     margin-top: 10px
     border: none
+    color: white
+    transition: 450ms linear
+    // Glass effect
+    @include glass-blue
+  &>p
+    color: white
+    font-weight: 600
+    font-size: 1.3rem 
   &.forbidden 
-    & p
-      color: red
-    & a
-      opacity: 0.5;
+    &>p
+      color: $redError
+    & button
+      opacity: 0.5
       pointer-events: none
+    & #tweet-body
+      background-color: rgba(224, 93, 93, 0.4)
+      backdrop-filter: blur(5px)
+      box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2)
+  & .text-wrapper
+    display: flex
+    align-items: center
+    justify-content: space-between
+    & .comment-left
+      padding: 1rem
+      height: 100px
+      width: 100px
+      background: $greyTransparent
+      font-size: 0.8rem
+      border-radius: 20px
+      color: white
+      position: relative
+      margin-right: 1.1rem
+      &::after
+        content: ""
+        position: absolute
+        width: 0
+        height: 0
+        top: 50%
+        right: -1rem
+        border-top: 1rem solid transparent
+        border-bottom: 1rem solid transparent
+        border-left: 1rem solid $greyTransparent
 
+.final__container
+  @include glass
+  padding: 1rem
+  border-radius: 20px
+  color: black
+  background-color: rgba(255, 255, 255, .60)
+  & h1
+    text-align: center
+  &>p
+    display: flex
+    align-items: center
+    & button
+      margin: 1rem
+  & span
+    font-weight: 800
+  & .preview__container
+    margin-top: 0.7rem
+    @include glass-blue
+    font-weight: 600
+    padding: 1rem
+    border-radius: 20px
+ 
+
+
+// Scrollbar styling
+/* width */
+::-webkit-scrollbar
+  width: 10px;
+
+/* Track */
+::-webkit-scrollbar-track
+  background: transparent
+
+/* Handle */
+::-webkit-scrollbar-thumb
+  background: #888
+  border-radius: 10px
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover
+  background: #555
+  cursor: pointer
 
 // Mobile and tablets
 // @media screen and (max-width:770px)

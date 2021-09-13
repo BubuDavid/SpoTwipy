@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="final__container">
+        <h1>Congrats!</h1>
+        <p>You can now go to
+            <button class="btn btn--twitter btn--sm">
+                <a href="https://twitter.com/home">
+                    <i class="fab fa-twitter-square"></i>
+                    <p>Twitter!</p>
+                </a>
+            </button>
+            and see your tweet!
+        </p>
+        <span>
+            Preview
+        </span>:
+        <div class="preview__container">
+            {% for p in context.tweet_body.split('\n') %}
+                <p>{{ p }}</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <button class="btn btn--green btn--lg">
+        <a href="/">
+            <i class="fas fa-home"></i>
+            <p>Volver</p>
+        </a>
+    </button>
+{% endblock %}

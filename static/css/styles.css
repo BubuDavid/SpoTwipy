@@ -23,10 +23,17 @@ body {
           justify-content: space-evenly;
   min-height: 100vh;
   overflow: hidden;
-  background-color: #EFEFEF;
+  background-image: url("https://images.pexels.com/photos/4871011/pexels-photo-4871011.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 .btn {
+  background-color: rgba(30, 215, 96, 0.4);
+  -webkit-backdrop-filter: blur(20px);
+          backdrop-filter: blur(20px);
+  -webkit-box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
   padding: 0.2rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -41,6 +48,18 @@ body {
   cursor: pointer;
   -webkit-transition: 450ms all;
   transition: 450ms all;
+  border: none;
+}
+
+.btn a {
+  text-decoration: none;
+  display: inherit;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: inherit;
 }
 
 .btn:hover {
@@ -48,20 +67,16 @@ body {
           transform: scale(1.2);
 }
 
-.btn--blue {
-  background-color: #CEE6B4;
-}
-
-.btn--green {
-  background-color: #57CC99;
-}
-
 .btn--yellow {
-  background-color: #F4D19B;
+  background-color: rgba(224, 93, 93, 0.8);
+  -webkit-backdrop-filter: blur(20px);
+          backdrop-filter: blur(20px);
+  -webkit-box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
 }
 
 .btn--twitter {
-  background-color: #1DA1F2;
+  background: #1DA1F2;
 }
 
 .btn--lg {
@@ -87,8 +102,8 @@ body {
   padding: 0.5rem;
 }
 
-.btn i {
-  margin-right: 0.5rem;
+.btn p {
+  margin-left: 0.5rem;
 }
 
 #shuffle-all {
@@ -96,6 +111,41 @@ body {
   bottom: 1rem;
   left: 1rem;
   text-decoration: none;
+  z-index: 1;
+}
+
+.index__container {
+  background-color: rgba(255, 255, 255, 0.3);
+  -webkit-backdrop-filter: blur(20px);
+          backdrop-filter: blur(20px);
+  -webkit-box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  width: 70%;
+  height: 500px;
+  border-radius: 20px;
+  color: white;
+}
+
+.index__container > h1 {
+  font-size: 2rem;
+}
+
+.index__container > p {
+  color: black;
+  font-weight: 500;
+  font-size: 1.2rem;
 }
 
 #songs__container {
@@ -127,16 +177,20 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 250px;
+  height: 280px;
   width: 200px;
-  padding: 1rem;
-  background-color: #CEE6B4;
+  padding: 0.8rem;
   border-radius: 10px;
   margin: 1rem 1rem 0 0;
   text-align: center;
   color: white;
   -webkit-transition: opactity 450ms ease;
   transition: opactity 450ms ease;
+  background-color: rgba(255, 255, 255, 0.3);
+  -webkit-backdrop-filter: blur(20px);
+          backdrop-filter: blur(20px);
+  -webkit-box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
 }
 
 .song__card img {
@@ -155,11 +209,6 @@ body {
   font-weight: 300;
 }
 
-.song__card .shuffle__btn {
-  background: #CEE6B4;
-  border: none;
-}
-
 .song__card.hidden {
   opacity: 0;
   pointer-events: none;
@@ -167,6 +216,7 @@ body {
 }
 
 .tweet__container {
+  position: relative;
   width: 90%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -199,22 +249,147 @@ body {
           justify-content: space-between;
 }
 
-.tweet__container textarea {
+.tweet__container #tweet-body {
   width: 90%;
   border-radius: 20px;
   outline: none;
   padding: 1rem;
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin-top: 10px;
   border: none;
+  color: white;
+  -webkit-transition: 450ms linear;
+  transition: 450ms linear;
+  background-color: rgba(29, 161, 242, 0.4);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  -webkit-box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
 }
 
-.tweet__container.forbidden p {
-  color: red;
+.tweet__container > p {
+  color: white;
+  font-weight: 600;
+  font-size: 1.3rem;
 }
 
-.tweet__container.forbidden a {
+.tweet__container.forbidden > p {
+  color: #E05D5D;
+}
+
+.tweet__container.forbidden button {
   opacity: 0.5;
   pointer-events: none;
+}
+
+.tweet__container.forbidden #tweet-body {
+  background-color: rgba(224, 93, 93, 0.4);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  -webkit-box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+}
+
+.tweet__container .text-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.tweet__container .text-wrapper .comment-left {
+  padding: 1rem;
+  height: 100px;
+  width: 100px;
+  background: rgba(191, 162, 219, 0.5);
+  font-size: 0.8rem;
+  border-radius: 20px;
+  color: white;
+  position: relative;
+  margin-right: 1.1rem;
+}
+
+.tweet__container .text-wrapper .comment-left::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: 50%;
+  right: -1rem;
+  border-top: 1rem solid transparent;
+  border-bottom: 1rem solid transparent;
+  border-left: 1rem solid rgba(191, 162, 219, 0.5);
+}
+
+.final__container {
+  background-color: rgba(255, 255, 255, 0.3);
+  -webkit-backdrop-filter: blur(20px);
+          backdrop-filter: blur(20px);
+  -webkit-box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  border-radius: 20px;
+  color: black;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.final__container h1 {
+  text-align: center;
+}
+
+.final__container > p {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.final__container > p button {
+  margin: 1rem;
+}
+
+.final__container span {
+  font-weight: 800;
+}
+
+.final__container .preview__container {
+  margin-top: 0.7rem;
+  background-color: rgba(29, 161, 242, 0.4);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  -webkit-box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+  font-weight: 600;
+  padding: 1rem;
+  border-radius: 20px;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+  cursor: pointer;
 }
 /*# sourceMappingURL=styles.css.map */

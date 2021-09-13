@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <a href="/shuffle-songs" id="shuffle-all">
-        <i class="fas fa-random btn btn--med btn--yellow"></i>
-    </a>
+    <button id="shuffle-all" class="btn btn--sm btn--yellow">
+        <i class="fas fa-random"></i>
+        <p>Shuffle All!</p>
+    </button>
     <section id="songs__container">
         {% for song in context.user_info.songs %}
             <div class="song__card hidden">
@@ -12,8 +13,8 @@
                 <p>|
                     {{ song.artists | join(' | ') }}
                     |</p>
-                <button class="shuffle__btn">
-                    <i class="fas fa-random btn btn--med btn--green"></i>
+                <button class="shuffle__btn btn btn--med btn--green">
+                    <i class="fas fa-random"></i>
                 </button>
             </div>
         {% endfor %}
@@ -22,18 +23,22 @@
     </section>
 
     <section class="tweet__container">
-        <div class="twitter__wrapper">
-            <p id='character-counter'></p>
-            <a href="#" class="btn btn--med btn--twitter">
+        <p id='character-counter'></p>
+        <form action="/tweet-now" method="POST" class="twitter__wrapper">
+            <button type="submit" class="btn btn--med btn--twitter" id="tweet__btn">
                 <i class="fab fa-twitter"></i>
-                Tweet it!
-            </a>
-        </div>
+                <p>Tweet it!</p>
+            </button>
+            <div class="text-wrapper">
+                <div class="comment-left">
+                    <p>This is how your tweet will look like</p>
+                </div>
+                <textarea id='tweet-body' name="tweet_body" id="tweet-area" cols="80" rows="8"></textarea>
 
-        <textarea id='tweet-body' name="tweet" id="tweet-area" cols="80" rows="8"></textarea>
-    </section>
+            </div>
+        </form>
+    </div>
 
-    <script src="{{ url_for('static', filename='scripts/shuffle.js') }}"></script>
+</section>
 
-
-{% endblock %}
+<script src="{{ url_for('static', filename='scripts/shuffle.js') }}"></script>{% endblock %}
