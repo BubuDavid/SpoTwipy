@@ -24,14 +24,12 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <!-- <a href="https://github.com/BubuDavid/SpoTwipy.git">
-    <img src="static/images/logo.png" alt="Logo" width="80" height="80">
-  </a> -->
 
-  <h3 align="center">SpoTwiPy-Shuffle it!</h3>
+  <h3 align="center"><a href="http://spotwipy-shuffle.glitch.me/">SpoTwiPy-Shuffle!</a></h3>
 
   <p align="center">
     Amazing project where I challenge myself to do a python app with javascript vanilla interactions.
+    Check the working project <a href="http://spotwipy-shuffle.glitch.me/">here</a>
     <br />
     <a href="https://github.com/BubuDavid/SpoTwipy.git"><strong>Explore the docs »</strong></a>
     <br />
@@ -72,7 +70,9 @@
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Product Name Screen Shot][product-screenshot]](http://spotwipy-shuffle.glitch.me/)
+
+Check [this page](http://spotwipy-shuffle.glitch.me/) to see the project working!
 
 In this project I callenged myself to do a flask-app, with spotify API and Twitter API, what this does is to grab, from my top listened songs from spotify, 5 random songs and automatically tweet their names on my Twitter account. That is all, but here are the rules:
 
@@ -85,7 +85,7 @@ I love to develop and create new projects everyday, this little `bot` is essenci
 
 ### Built With
 
-- [flask](https://flask.palletsprojects.com/en/2.0.x/)
+- [Flask](https://flask.palletsprojects.com/en/2.0.x/)
 - [Spotify API](https://developer.spotify.com/)
 - [Tweepy](https://www.tweepy.org/)
 - [SASS](https://sass-lang.com/)
@@ -94,7 +94,7 @@ I love to develop and create new projects everyday, this little `bot` is essenci
 
 ## Getting Started
 
-To get a local copy up follow these simple example steps.
+To get a local copy up follow these simple steps.
 
 1. Go to your terminal and travel where you want to save this project, in my case will be in a `Dev` folder.
 
@@ -108,7 +108,7 @@ cd Dev/
 git clone https://github.com/BubuDavid/SpoTwipy.git
 ```
 
-3. You are almost there, lets go for the peequisistes
+3. You are almost there, lets go for the prerequisites.
 
 ### Prerequisites
 
@@ -122,8 +122,8 @@ You will need this on your computer
 
 ### Installation
 
-1. Crate a [spotify app](https://developer.spotify.com/documentation/web-api/quick-start/) and save the client id and the client secet in a `.env` file inside your folder. Notice you have to save this things with the appropiate names as appear in the `app.py` file. Notice you have to save a `SPOTIFY_CALLBACK_URI`, that is you callback url, I recomend you to just write `http://localhost:8888/spotify-callback` in your `.env` and in your app in the section of `callback uri`.
-2. Create a [twitter app]() almost identically as the spotify app but save all the keys they give you, you will not be able to retrieve those keys if you lose them. You would have to re-generate them.
+1. Crate a [spotify app](https://developer.spotify.com/documentation/web-api/quick-start/) and save the client id and the client secret in a `.env` file inside your folder. Notice you have to save this things with the appropiate names as they appear in the `app.py` file. Notice you have to save a `SPOTIFY_CALLBACK_URI`, that is you callback url, I recomend you to just write `http://localhost:8888/spotify-callback` in your `.env` and in your app in the section of `callback uri`.
+2. Create a [twitter app](https://developer.twitter.com/en) almost identically as the spotify app but save all the keys they give to you, you will not be able to retrieve those keys if you lose them, you will have to re-generate them if this happens.
 3. You have to create a env variable in the `.env` called `SECRET_KEY` and it can contain anything you want.
 4. Now you only have to go into your terminal, get into your root folder (not the Dev folder, the repository folder), and write
 
