@@ -138,7 +138,7 @@ class Bubufy:
         query_parameters = {
             'time_range': time_range,
             'limit'     : str(limit),
-            'offset'    : str(offset * limit)
+            'offset'    : str(offset)
         }
         # Make the get call with all parameters
         r = requests.get(

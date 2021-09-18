@@ -8,8 +8,8 @@ import tweepy
 from decouple import config
 
 # Import my spotify module
-from models.spotify_api import Bubufy
-from models.user import User
+from modules.spotify_api import Bubufy
+from modules.user import User
 
 
 # Get secret keys from a hidden .env file
@@ -42,6 +42,15 @@ tweet_body = ''
 user = User('')
 
 
+# My decorator
+def auto_token(func):
+    def wrapper():
+        if 'token' in session:
+            bubufy.access_token = session['token']
+            return func()
+        else:
+            return redirect('/logout')
+    return wrapper
 
 # Init our app flask object
 app = Flask(__name__)
@@ -68,12 +77,17 @@ def spotify_callback_method():
     sp_code = request.args.get('code')
     bubufy.code_for_token = sp_code
     bubufy.set_token()
+    session['token'] = bubufy.access_token
 
     # Get the top songs and create a json
-    songs = bubufy.get_top_tracks_or_artists(
-        key_names=['name', 'artists', 'id', 'album', 'uri'],
-        time_range='short_term'
-    )
+    songs = []
+    for offset in range(0, 3):
+        songs += bubufy.get_top_tracks_or_artists(
+            key_names=['name', 'artists', 'album', 'uri'],
+            time_range='medium_term',
+            offset= 49*offset,
+            limit=50,
+        )
 
     # Generate the user
     user.create_user('Bubu', songs)
@@ -82,6 +96,7 @@ def spotify_callback_method():
 
 
 @app.route('/shuffle-songs')
+@auto_token
 def shuffle_songs_method():
     if not user.username:
         return redirect('/')
